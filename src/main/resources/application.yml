@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: update
+
+#spring:
+#  datasource:
+#    url: jdbc:sqlserver://m89qtjvjro.database.windows.net;databaseName=integra_homol
+#    username: integra@m89qtjvjro
+#    password: portal@consul2015
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      dialect: org.hibernate.dialect.SQLServer2012Dialect
+#      ddl-auto: update
