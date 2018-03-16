@@ -6,10 +6,9 @@ import com.visitmed.models.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.UUID;
 
-//@Service
+@Service
 public class CompanyCRUD {
 
     private final CompanyGateway companyGateway;

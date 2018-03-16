@@ -1,6 +1,5 @@
 package com.visitmed.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.UUID;
@@ -18,21 +19,26 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
-@Table(name = "users")
+@Table(name = "managers")
 @EqualsAndHashCode(of = {"id"})
-public class User {
+public class Manager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @JsonProperty(value = "user_name")
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "first_name")
+    private String firstName;
 
-    private String password;
+    @Column(name = "last_name")
+    private String lastName;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private Employee employee;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
 
 }

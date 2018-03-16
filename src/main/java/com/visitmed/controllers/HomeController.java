@@ -2,7 +2,7 @@ package com.visitmed.controllers;
 
 import com.visitmed.dtos.HomeDto;
 import com.visitmed.models.Home;
-import com.visitmed.usecases.GetHome;
+import com.visitmed.usecases.GetManagerHome;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ public class HomeController {
 
     private final ModelMapper modelMapper;
 
-    private final GetHome getHome;
+    private final GetManagerHome getHome;
 
     @Autowired
-    public HomeController(final ModelMapper modelMapper, final GetHome getHome) {
+    public HomeController(final ModelMapper modelMapper, final GetManagerHome getHome) {
         this.modelMapper = modelMapper;
         this.getHome = getHome;
     }
@@ -30,7 +30,7 @@ public class HomeController {
     @ResponseStatus(HttpStatus.OK)
     public HomeDto getHome(final Principal principal) {
         final UUID userId = UUID.fromString(principal.getName());
-        final Home home = getHome.getHome(userId);
+        final Home home = getHome.byMangerUserId(userId);
         final HomeDto homeDto = modelMapper.map(home, HomeDto.class);
 
         return homeDto;
