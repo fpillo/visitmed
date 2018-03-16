@@ -17,8 +17,8 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public Optional<User> findByEmail(final String email) {
-        return Optional.ofNullable(userRepository.findByEmail(email));
+    public Optional<User> findEnabledByEmail(final String email) {
+        return Optional.ofNullable(userRepository.findByEmailAndEnabled(email, true));
     }
 
 }

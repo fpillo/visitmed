@@ -20,7 +20,7 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
-        final User user = userGateway.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
+        final User user = userGateway.findEnabledByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
 
         return new AuthUser(user.getId(), user.getEmail(), user.getPassword());
     }
