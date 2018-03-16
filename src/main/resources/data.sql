@@ -1,4 +1,4 @@
-INSERT INTO users (id, user_name, password) values ('d7e96744fa144697ba912a75adc5b27e', 'fpillo', '12345');
+INSERT INTO users (id, email, password, enabled) values ('d7e96744fa144697ba912a75adc5b27e', 'fernandopillo@gmail.com', '12345', true);
 
 INSERT INTO companies (id, name) values ('1cd0e9b8b2d049efb42043dea1b6d122', 'Dalben');
 

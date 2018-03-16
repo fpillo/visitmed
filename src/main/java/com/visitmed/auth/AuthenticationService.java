@@ -19,9 +19,9 @@ public class AuthenticationService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String userName) throws UsernameNotFoundException {
-        final User user = userGateway.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException(userName));
+    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+        final User user = userGateway.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
 
-        return new AuthUser(user.getId(), user.getUserName(), user.getPassword());
+        return new AuthUser(user.getId(), user.getEmail(), user.getPassword());
     }
 }

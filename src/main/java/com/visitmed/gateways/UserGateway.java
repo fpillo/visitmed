@@ -6,10 +6,6 @@ import java.util.Optional;
 
 public interface UserGateway {
 
-    Optional<User> findByUserName(String userName);
-
-    User create(User user);
-
-    boolean existsByUserName(String userName);
+    Optional<User> findByEmail(String email);
 
 }

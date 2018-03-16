@@ -33,9 +33,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             final User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    user.getUserName(),
+                    user.getEmail(),
                     user.getPassword(),
-                    new ArrayList<>()));
+                    new ArrayList<>())
+            );
 
         } catch (final IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +55,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setSubject(authUser.getId().toString())
                 .setIssuedAt(new Date())
                 .setIssuer("AuthenticationService")
-                .claim("userName", authUser.getUsername())
+                .claim("email", authUser.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET_KEY.getBytes());
 
