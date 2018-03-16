@@ -33,6 +33,13 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
+    private String rg;
+
+    private String cpf;
+
+    @Column(name = "photo_url")
+    private String photoUrl;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

@@ -24,7 +24,7 @@ public class GetManagerHome {
         final Manager manager = managerGateway.findByUserId(userId).orElseThrow(() -> new ResourceNotFoundException());
         final Company company = manager.getCompany();
 
-        return new Home(company, manager, null);
+        return new Home(company, manager);
     }
 
 }

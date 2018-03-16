@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,5 +24,19 @@ public class Company {
     private UUID id;
 
     private String name;
+
+    @Column(name = "trade_name")
+    private String tradeName;
+
+    private String cnpj;
+
+    @Column(name = "municipal_inscription")
+    private String municipalInscription;
+
+    @Column(name = "state_inscription")
+    private String stateInscription;
+
+    @Column(name = "logo_url")
+    private String logoUrl;
 
 }

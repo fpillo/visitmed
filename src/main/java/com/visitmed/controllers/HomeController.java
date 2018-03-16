@@ -1,6 +1,6 @@
 package com.visitmed.controllers;
 
-import com.visitmed.dtos.HomeDto;
+import com.visitmed.dtos.HomeDTO;
 import com.visitmed.models.Home;
 import com.visitmed.usecases.GetManagerHome;
 import org.modelmapper.ModelMapper;
@@ -28,10 +28,10 @@ public class HomeController {
 
     @GetMapping(value = "/home")
     @ResponseStatus(HttpStatus.OK)
-    public HomeDto getHome(final Principal principal) {
+    public HomeDTO getHome(final Principal principal) {
         final UUID userId = UUID.fromString(principal.getName());
         final Home home = getHome.byMangerUserId(userId);
-        final HomeDto homeDto = modelMapper.map(home, HomeDto.class);
+        final HomeDTO homeDto = modelMapper.map(home, HomeDTO.class);
 
         return homeDto;
     }
