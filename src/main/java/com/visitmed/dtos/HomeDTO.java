@@ -11,6 +11,6 @@ public class HomeDTO {
 
     private CompanyDTO company;
 
-    private ManagerDTO manager;
+    private EmployeeDTO manager;
 
 }

@@ -14,6 +14,9 @@ public class EmployeeDTO {
     @JsonProperty(value = "last_name")
     private String lastName;
 
+    @JsonProperty(value = "employee_type")
+    private String type;
+
     private String rg;
 
     private String cpf;

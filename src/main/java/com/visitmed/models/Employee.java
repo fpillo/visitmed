@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +34,10 @@ public class Employee {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "employee_type")
+    @Enumerated(EnumType.STRING)
+    private EmployeeType type;
 
     private String rg;
 

@@ -9,6 +9,6 @@ public class Home {
 
     private final Company company;
 
-    private final Manager manager;
+    private final Employee manager;
 
 }
