@@ -7,10 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.UUID;
 
 @RestController
@@ -26,11 +26,10 @@ public class HomeController {
         this.getHome = getHome;
     }
 
-    @GetMapping(value = "/home")
+    @GetMapping(value = "/{company_id}/home")
     @ResponseStatus(HttpStatus.OK)
-    public HomeDTO getHome(final Principal principal) {
-        final UUID userId = UUID.fromString(principal.getName());
-        final Home home = getHome.byMangerUserId(userId);
+    public HomeDTO getHome(@PathVariable(name = "company_id") final UUID companyId) {
+        final Home home = getHome.byCompanyId(companyId);
         final HomeDTO homeDto = modelMapper.map(home, HomeDTO.class);
 
         return homeDto;
