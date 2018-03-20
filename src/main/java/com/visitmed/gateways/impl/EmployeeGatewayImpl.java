@@ -3,6 +3,7 @@ package com.visitmed.gateways.impl;
 import com.visitmed.gateways.EmployeeGateway;
 import com.visitmed.gateways.EmployeeRepository;
 import com.visitmed.models.Employee;
+import com.visitmed.models.EmployeeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,12 +22,12 @@ public class EmployeeGatewayImpl implements EmployeeGateway {
     }
 
     @Override
-    public Optional<Employee> findByUserId(final UUID userId) {
-        return Optional.ofNullable(employeeRepository.findByUserId(userId));
+    public Optional<Employee> findManagerByCompanyId(final UUID companyId) {
+        return employeeRepository.findByCompanyIdAndType(companyId, EmployeeType.MANAGER).stream().findFirst();
     }
 
     @Override
-    public Set<Employee> findByCompanyId(final UUID companyId) {
-        return employeeRepository.findByCompanyId(companyId);
+    public Set<Employee> findSellersByCompanyId(final UUID companyId) {
+        return employeeRepository.findByCompanyIdAndType(companyId, EmployeeType.SELLER);
     }
 }

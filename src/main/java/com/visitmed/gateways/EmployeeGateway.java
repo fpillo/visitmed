@@ -8,8 +8,8 @@ import java.util.UUID;
 
 public interface EmployeeGateway {
 
-    Optional<Employee> findByUserId(UUID userId);
+    Optional<Employee> findManagerByCompanyId(UUID companyId);
 
-    Set<Employee> findByCompanyId(UUID companyId);
+    Set<Employee> findSellersByCompanyId(UUID companyId);
 
 }
