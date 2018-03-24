@@ -34,7 +34,7 @@ public class EmployeeController {
 
     @GetMapping(value = "/{company_id}/sellers/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmployeeDTO getSeller(@PathVariable(name = "company_id") final UUID companyId,
+    public EmployeeDTO findById(@PathVariable(name = "company_id") final UUID companyId,
                                  @PathVariable(name = "id") final UUID id) {
 
         final Employee employee = employeeCRUD.findById(id);
@@ -43,7 +43,7 @@ public class EmployeeController {
 
     @GetMapping(value = "/{company_id}/sellers")
     @ResponseStatus(HttpStatus.OK)
-    public Collection<EmployeeDTO> getSellers(@PathVariable(name = "company_id") final UUID companyId) {
+    public Collection<EmployeeDTO> findAll(@PathVariable(name = "company_id") final UUID companyId) {
         final Collection<Employee> employees = employeeCRUD.getSellersByCompanyId(companyId);
 
         Type listType = new TypeToken<List<EmployeeDTO>>() {}.getType();
