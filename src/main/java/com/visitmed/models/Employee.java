@@ -54,4 +54,10 @@ public class Employee {
     @JoinColumn(name = "company_id")
     private Company company;
 
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private Address address;
+//
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private Contact contact;
+
 }
