@@ -22,4 +22,10 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    private String phoneNumber;
+
+    private String mobileNumber;
+
+    private String whatsapp;
+
 }

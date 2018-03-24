@@ -55,10 +55,12 @@ public class Employee {
     @JoinColumn(name = "company_id")
     private Company company;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    private Address address;
-//
-//    @OneToOne(fetch = FetchType.LAZY)
-//    private Contact contact;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
 }
