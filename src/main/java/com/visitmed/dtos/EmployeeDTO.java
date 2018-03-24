@@ -30,4 +30,8 @@ public class EmployeeDTO {
 
     private UserDTO user;
 
+    private AddressDTO address;
+
+    private ContactDTO contact;
+
 }
