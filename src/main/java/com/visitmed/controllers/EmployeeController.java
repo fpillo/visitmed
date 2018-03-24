@@ -52,6 +52,7 @@ public class EmployeeController {
         return employeesDTO;
     }
 
+    //TODO: por employee id na url
     @PutMapping(value = "/{company_id}/sellers")
     @ResponseStatus(HttpStatus.OK)
     public EmployeeDTO update(@RequestBody final EmployeeDTO employeeDTO) {
