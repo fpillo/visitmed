@@ -56,4 +56,11 @@ public class EmployeeCRUD {
         return employeeGateway.save(updatedEmployee);
     }
 
+    public Employee disableSeller(final UUID companyId, final UUID id) {
+        final Employee employee = employeeGateway.findById(id).orElseThrow(() -> new ResourceNotFoundException());
+        employee.getUser().setEnabled(false);
+
+        return employeeGateway.save(employee);
+    }
+
 }

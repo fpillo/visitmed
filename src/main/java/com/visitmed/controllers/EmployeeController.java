@@ -6,6 +6,7 @@ import com.visitmed.usecases.EmployeeCRUD;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,6 +66,15 @@ public class EmployeeController {
 
         final Employee employee = modelMapper.map(employeeDTO, Employee.class);
         return modelMapper.map(employeeCRUD.createSeller(companyId, employee), EmployeeDTO.class);
+    }
+
+    @DeleteMapping(value = "/{company_id}/sellers/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EmployeeDTO disable(@PathVariable(name = "company_id") final UUID companyId,
+                                 @PathVariable(name = "id") final UUID id) {
+
+        final Employee employee = employeeCRUD.disableSeller(companyId, id);
+        return modelMapper.map(employee, EmployeeDTO.class);
     }
 
 }
