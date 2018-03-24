@@ -22,6 +22,11 @@ public class EmployeeGatewayImpl implements EmployeeGateway {
     }
 
     @Override
+    public Optional<Employee> findById(final UUID id) {
+        return Optional.ofNullable(employeeRepository.findById(id));
+    }
+
+    @Override
     public Optional<Employee> findManagerByCompanyId(final UUID companyId) {
         return employeeRepository.findByCompanyIdAndType(companyId, EmployeeType.MANAGER).stream().findFirst();
     }
@@ -29,5 +34,10 @@ public class EmployeeGatewayImpl implements EmployeeGateway {
     @Override
     public Set<Employee> findSellersByCompanyId(final UUID companyId) {
         return employeeRepository.findByCompanyIdAndType(companyId, EmployeeType.SELLER);
+    }
+
+    @Override
+    public Employee save(final Employee employee) {
+        return employeeRepository.save(employee);
     }
 }

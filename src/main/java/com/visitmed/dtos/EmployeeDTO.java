@@ -28,4 +28,6 @@ public class EmployeeDTO {
     @JsonProperty(value = "photo_url")
     private String photoUrl;
 
+    private UserDTO user;
+
 }

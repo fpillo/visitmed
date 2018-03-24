@@ -9,6 +9,8 @@ import java.util.UUID;
 
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
+    Employee findById(UUID id);
+
     Set<Employee> findByCompanyIdAndType(UUID companyId, EmployeeType type);
 
 }
