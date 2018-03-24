@@ -1,5 +1,6 @@
 package com.visitmed.usecases;
 
+import com.visitmed.exceptions.ResourceAlreadyExistsException;
 import com.visitmed.exceptions.ResourceNotFoundException;
 import com.visitmed.gateways.CompanyGateway;
 import com.visitmed.gateways.EmployeeGateway;
@@ -34,6 +35,9 @@ public class EmployeeCRUD {
     }
 
     public Employee createSeller(final UUID companyId, final Employee employee) {
+        if (employeeGateway.existsByUserEmailAndCompanyId(employee.getUser().getEmail(), companyId)) {
+            throw new ResourceAlreadyExistsException();
+        }
         final Company company = companyGateway.findById(companyId).orElseThrow(() -> new ResourceNotFoundException());
 
         employee.setType(EmployeeType.SELLER);

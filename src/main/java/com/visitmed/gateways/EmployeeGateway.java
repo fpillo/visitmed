@@ -16,4 +16,6 @@ public interface EmployeeGateway {
 
     Employee save(Employee employee);
 
+    boolean existsByUserEmailAndCompanyId(String email, UUID companyId);
+
 }

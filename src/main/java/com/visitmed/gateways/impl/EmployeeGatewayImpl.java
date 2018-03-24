@@ -40,4 +40,10 @@ public class EmployeeGatewayImpl implements EmployeeGateway {
     public Employee save(final Employee employee) {
         return employeeRepository.save(employee);
     }
+
+    @Override
+    public boolean existsByUserEmailAndCompanyId(final String email, final UUID companyId) {
+        final Employee employee = employeeRepository.findByUserEmailAndCompanyId(email, companyId);
+        return employee != null;
+    }
 }

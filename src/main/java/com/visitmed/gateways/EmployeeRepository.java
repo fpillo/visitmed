@@ -13,4 +13,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
     Set<Employee> findByCompanyIdAndType(UUID companyId, EmployeeType type);
 
+    Employee findByUserEmailAndCompanyId(String email, UUID companyId);
+
 }
