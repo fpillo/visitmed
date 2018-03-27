@@ -20,10 +20,13 @@ public class EmployeeCRUD {
 
     private final CompanyGateway companyGateway;
 
+    private final ValidateModel validateModel;
+
     @Autowired
-    public EmployeeCRUD(final EmployeeGateway employeeGateway, final CompanyGateway companyGateway) {
+    public EmployeeCRUD(final EmployeeGateway employeeGateway, final CompanyGateway companyGateway, final ValidateModel validateModel) {
         this.employeeGateway = employeeGateway;
         this.companyGateway = companyGateway;
+        this.validateModel = validateModel;
     }
 
     public Employee findById(final UUID id) {
@@ -43,6 +46,8 @@ public class EmployeeCRUD {
         employee.setType(EmployeeType.SELLER);
         employee.setCompany(company);
 
+        validateModel.validate(employee);
+
         return employeeGateway.save(employee);
     }
 
@@ -53,12 +58,16 @@ public class EmployeeCRUD {
         updatedEmployee.setCompany(originalEmployee.getCompany());
         updatedEmployee.setType(originalEmployee.getType());
 
+        validateModel.validate(updatedEmployee);
+
         return employeeGateway.save(updatedEmployee);
     }
 
     public Employee disableSeller(final UUID companyId, final UUID id) {
         final Employee employee = employeeGateway.findById(id).orElseThrow(() -> new ResourceNotFoundException());
         employee.getUser().setEnabled(false);
+
+        validateModel.validate(employee);
 
         return employeeGateway.save(employee);
     }
